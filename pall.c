@@ -1,40 +1,22 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#define MAX_STACK_SIZE 100
-int stack[MAX_STACK_SIZE]; // the stack
-int top = -1; // top of stack
-void push(int value) {
-	if (top == MAX_STACK_SIZE - 1) {
-		printf("Error: stack overflow\n");
-		exit(EXIT_FAILURE);
+/**
+ *  * f_pall - prints the stack
+ *   * @head: stack head
+ *    * @counter: no used
+ *     * Return: no return
+ *     */
+void f_pall(stack_t **head, unsigned int counter)
+{
+	stack_t *h;
+	(void)counter;
+
+	h = *head;
+	if (h == NULL)
+		return;
+	while (h)
+	{
+		printf("%d\n", h->n);
+		h = h->next;
 	}
-	stack[++top] = value;
-}
-void pall() {
-	for (int i = top; i >= 0; i--) {
-		printf("%d\n", stack[i]);
-	}
-}
-int main(int argc, char *argv[]) {
-	if (argc == 1) {
-		printf("Error: no opcode provided\n");
-		return EXIT_FAILURE;
-	}
-	if (strcmp(argv[1], "push") == 0) {
-		if (argc < 3) {
-			printf("L%d: usage: push integer\n", 1);
-			return EXIT_FAILURE;
-		}
-		Copy code
-			int value = atoi(argv[2]); push(value);
-	} else if (strcmp(argv[1], "pall") == 0) {
-		pall();
-	} else {
-		printf("Error: invalid opcode\n");
-		return EXIT_FAILURE;
-	}
-	return 0;
 }
 
